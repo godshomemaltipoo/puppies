@@ -1,0 +1,1234 @@
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>God's Home Maltipoo </title>
+        <style>/* =======================
+   1. GLOBAL STStyles & VARIABLES
+======================== */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@600;700&display=swap');
+
+:root {
+    --primary-color: #8B4513; /* SaddleBrown */
+    --accent-color: #CD853F; /* Peru (Lighter Brown) */
+    --text-dark: #333333;     /* For headings */
+    --text-light: #666666;    /* For body text */
+    --bg-light-gray: #f4f7f6;  /* Light background from inspiration */
+    --bg-white: #ffffff;
+    
+    --heading-font: 'Montserrat', sans-serif;
+    --body-font: 'Lato', sans-serif;
+    
+    --box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    --border-radius: 12px; /* Softer radius from inspiration */
+    --transition-speed: 0.3s ease;
+
+    /* Animation variables */
+    --animation-delay-step: 0.1s;
+    --animation-duration: 0.7s;
+    --animation-timing-function: cubic-bezier(0.5, 1, 0.89, 1);
+}
+
+/* Base Reset & Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--body-font);
+    line-height: 1.6;
+    color: var(--text-light);
+    background-color: var(--bg-light-gray); /* Light gray background */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    color: var(--text-dark); /* Dark text for headings */
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.25rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+/* =======================
+   2. REUSABLE COMPONENTS
+======================== */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px; /* Slightly sharper button radius */
+    text-decoration: none;
+    font-weight: 700;
+    font-family: var(--heading-font);
+    cursor: pointer;
+    transition: all var(--transition-speed); /* Existing transition */
+    border: 2px solid transparent;
+    text-align: center;
+}
+
+/* Solid Button (like "Apply") */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    border-color: var(--primary-color);
+}
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--bg-white);
+    transform: translateY(-3px); /* More pronounced lift */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15); /* More pronounced shadow */
+}
+
+/* Outline Button (like "View Details") */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+}
+
+/* Section Header (Matches inspiration) */
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+}
+
+.section-header .accent-line {
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 0.5rem auto 1rem;
+    border-radius: 2px;
+}
+
+.section-header .section-subtitle {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--text-light);
+}
+
+/* Content Card (The key element from inspiration) */
+.content-card {
+    background: radial-gradient(circle at bottom right, rgba(139, 69, 19, 0.2) 0%, transparent 70%), var(--bg-white); /* Updated to brown gradient */
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed); /* Added for hover */
+}
+.content-card:not(.puppy-card):not(.service-card):hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Grid (for services/puppies) */
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+/* Checklist (from "Our High School" card) */
+.checklist {
+    padding-left: 0;
+    margin-top: 1.5rem;
+}
+.checklist li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+.checklist li i {
+    color: var(--primary-color); /* Using your blue instead of green */
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+}
+
+/* =======================
+   3. HEADER & NAVIGATION
+======================== */
+.site-header {
+    background: var(--bg-white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-family: var(--heading-font);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+/* Mobile Nav - Hidden by default */
+.nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-white);
+    border: 1px solid #eee;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    width: 250px;
+    overflow: hidden;
+    z-index: 999;
+}
+
+/* This class will be toggled by JS */
+.nav-links.nav-active {
+    display: flex;
+}
+
+.nav-links li {
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+}
+.nav-links li:last-child { border-bottom: none; }
+
+.nav-links a {
+    display: block;
+    padding: 1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+.nav-links a:hover {
+    background-color: var(--bg-light-gray);
+    color: var(--primary-color);
+}
+.nav-links .nav-cta {
+    display: none; /* Hide CTA button in mobile dropdown */
+}
+
+/* Mobile Nav Toggle (Hamburger) */
+.nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    width: 25px;
+    height: 3px;
+    background: var(--text-dark);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--text-dark);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+.hamburger::before { top: -8px; }
+.hamburger::after { bottom: -8px; }
+
+/* Hamburger 'X' animation (toggled with JS) */
+.nav-toggle.is-active .hamburger { background: transparent; }
+.nav-toggle.is-active .hamburger::before { transform: rotate(45deg) translate(5px, 6px); }
+.nav-toggle.is-active .hamburger::after { transform: rotate(-45deg) translate(5px, -6px); }
+
+/* =======================
+   4. SITE MAIN & SECTIONS
+======================== */
+.site-main {
+    background-color: var(--bg-light-gray);
+}
+
+.page-section {
+    padding: 2.5rem 0;
+}
+
+/* Hero Section */
+.hero-section {
+    background-image: linear-gradient(rgba(45, 22, 8, 0.5), rgba(45, 22, 8, 0.5)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYkK0WWSjeLQvYykuFsGbw_y2_hTBA-2uA7t1IYnbKBmwtyx_VPIgxkh3U&s=10');
+    background-size: cover;
+    background-position: center;
+    padding: 4rem 0;
+    text-align: center;
+}
+.hero-section .hero-title,
+.hero-section .hero-subtitle {
+    color: var(--bg-white);
+}
+.hero-title {
+    font-size: 2.25rem;
+}
+.hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Service Card (from "Why Choose") */
+.service-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+}
+
+.service-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: var(--bg-white);
+    display: grid;
+    place-items: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 10px rgba(139, 69, 19, 0.4); /* Updated shadow color to match new primary brown */
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed); /* Added for hover */
+}
+.service-card:hover .service-icon-wrapper {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 15px rgba(139, 69, 19, 0.6); /* Slightly stronger shadow */
+}
+
+/* Puppy Card (from "Faculty") */
+.puppy-card {
+    padding: 0; /* Remove padding from card */
+    overflow: hidden; /* To clip image corners */
+}
+.puppy-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.4s ease; /* Faster transition for hover */
+}
+.puppy-card:hover .puppy-image {
+    transform: scale(1.05);
+}
+.puppy-card-content {
+    padding: 1.5rem;
+}
+.puppy-details {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Stats Section */
+.stat-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.stat-number {
+    display: block;
+    font-family: var(--heading-font);
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.stat-title {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+/* Testimonial Card (from "Success Stories") */
+.testimonial-card {
+    text-align: center;
+    position: relative;
+}
+.testimonial-profile {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: -4.5rem auto 1rem;
+    padding: 3px;
+    background: linear-gradient(45deg, var(--accent-color), var(--primary-color));
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--bg-white);
+}
+.testimonial-card blockquote {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text-light);
+    margin: 0;
+    margin-bottom: 1rem;
+}
+.testimonial-card cite {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-style: normal;
+}
+
+/* Contact Card (from "Get in Touch") */
+.contact-info-card {
+    background: var(--primary-color);
+    border-radius: var(--border-radius);
+    padding: 2.5rem 2rem;
+    color: var(--bg-white);
+}
+.contact-info-card h3,
+.contact-info-card p,
+.contact-info-card a,
+.contact-info-card span {
+    color: var(--bg-white);
+}
+.contact-info-card h3 {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.contact-info-card p {
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+.contact-list {
+    list-style: none;
+    padding-left: 0;
+}
+.contact-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.contact-list li i {
+    font-size: 1.2rem;
+    margin-right: 1.25rem;
+    width: 25px; /* Aligns text */
+    text-align: center;
+}
+.contact-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Contact Form */
+.contact-form-card {
+    margin-top: 1.5rem; /* Space between info card and form card */
+}
+
+.contact-form-card h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-family: var(--body-font);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.2); /* Use a shade of primary color */
+}
+
+.contact-form-card .btn {
+    width: 100%; /* Make button full width */
+}
+
+/* =======================
+   5. FOOTER
+======================== */
+.site-footer {
+    background: #333;
+    color: #ccc;
+    padding: 3rem 0 2rem;
+    text-align: center;
+}
+.footer-logo {
+    font-family: var(--heading-font);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--bg-white);
+    margin-bottom: 1rem;
+}
+.footer-links {
+    margin-bottom: 1rem;
+}
+.footer-links a {
+    color: var(--bg-white);
+    margin: 0 0.75rem;
+    font-weight: 600;
+}
+.footer-links a:hover {
+    color: var(--accent-color);
+}
+.footer-copyright {
+    font-size: 0.9rem;
+}
+
+/* =======================
+   6. SCROLL REVEAL ANIMATIONS
+======================== */
+
+/* Base styles for elements to be revealed */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(30px); /* Default: fade in and slide up */
+    transition: opacity var(--animation-duration) var(--animation-timing-function), transform var(--animation-duration) var(--animation-timing-function);
+    will-change: opacity, transform; /* Optimize for animation */
+}
+
+/* This class is added by JS when element is in view */
+.reveal-item.is-animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Modifier for scale-in animation */
+.reveal-item.scale-in {
+    transform: translateY(30px) scale(0.9);
+}
+.reveal-item.scale-in.is-animated {
+    opacity: 1; /* Inherits opacity from .reveal-item.is-animated */
+    transform: translateY(0) scale(1);
+}
+
+/* Specific initial delays for hero section for staggered effect */
+.hero-section .hero-title { transition-delay: 0.1s; }
+.hero-section .hero-subtitle { transition-delay: 0.2s; }
+.hero-section .btn { transition-delay: 0.3s; }
+
+/* --- Staggered Grid Animations --- */
+/* This class is added to the parent .card-grid container */
+.staggered-grid.is-animated > .reveal-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.staggered-grid.is-animated > .reveal-item.scale-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Apply staggered delays to children */
+.staggered-grid.is-animated > .reveal-item:nth-child(1) { transition-delay: calc(var(--animation-delay-step) * 1); }
+.staggered-grid.is-animated > .reveal-item:nth-child(2) { transition-delay: calc(var(--animation-delay-step) * 2); }
+.staggered-grid.is-animated > .reveal-item:nth-child(3) { transition-delay: calc(var(--animation-delay-step) * 3); }
+.staggered-grid.is-animated > .reveal-item:nth-child(4) { transition-delay: calc(var(--animation-delay-step) * 4); }
+.staggered-grid.is-animated > .reveal-item:nth-child(5) { transition-delay: calc(var(--animation-delay-step) * 5); }
+.staggered-grid.is-animated > .reveal-item:nth-child(6) { transition-delay: calc(var(--animation-delay-step) * 6); }
+
+
+/* =======================
+   7. MEDIA QUERIES (Tablet & Desktop)
+======================== */
+
+/* Tablet (approx 768px and up) */
+@media (min-width: 768px) {
+    h1 { font-size: 2.75rem; }
+    h2 { font-size: 2rem; }
+
+    .page-section {
+        padding: 4rem 0;
+    }
+
+    /* --- Navigation --- */
+    .nav-toggle {
+        display: none; /* Hide hamburger */
+    }
+
+    .nav-links {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        background: none;
+        border: none;
+        box-shadow: none;
+        width: auto;
+    }
+    
+    .nav-links li {
+        border-bottom: none;
+        margin-left: 0.5rem;
+    }
+    .nav-links a {
+        padding: 0.5rem 1rem;
+        color: var(--text-dark);
+    }
+    .nav-links a:hover {
+        background: none;
+        color: var(--primary-color);
+    }
+    .nav-links .nav-cta {
+        display: inline-block; /* Show CTA button */
+        background: var(--primary-color);
+        color: var(--bg-white);
+        border-radius: 8px;
+        margin-left: 1rem;
+    }
+    .nav-links .nav-cta:hover {
+        background: var(--accent-color);
+        color: var(--bg-white);
+    }
+
+    /* --- Layouts --- */
+    .hero-section {
+        padding: 5rem 0;
+        text-align: left;
+    }
+    .hero-title {
+        font-size: 3rem;
+    }
+    .hero-section .container {
+        max-width: 60%;
+    }
+
+    .section-header {
+        text-align: left;
+    }
+    .section-header .accent-line {
+        margin: 0.5rem 0 1rem;
+    }
+    .section-header .section-subtitle {
+        margin: 0;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .testimonial-card {
+        margin-bottom: 0; /* Handled by grid gap */
+    }
+
+    /* Stack testimonials horizontally */
+    #testimonials .card-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* Large Desktop (approx 1024px and up) */
+@media (min-width: 1024px) {
+    /* Make 3-column grids for services */
+    #process .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    /* You can decide if puppies should be 2 or 3 wide */
+    #puppies .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #stats .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #testimonials .card-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #faq .card-grid {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}</style>
+      </head>
+      <body>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>God's Home Maltipoo Puppies - Trusted Breeders</title>
+    <meta name="description" content="Welcome to God's Home Maltipoo Puppies. We are trusted, licensed breeders offering healthy, loving Maltipoo puppies for your family. Delivery and local pickup available.">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="#">God's Home Maltipoo</a>
+            </div>
+            <nav class="main-nav">
+                <button class="nav-toggle" aria-label="toggle navigation">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#process">Our Process</a></li>
+                    <li><a href="#puppies">Puppies</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact" class="nav-cta">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="site-main">
+
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <h1 class="hero-title reveal-item">Find Your Perfect Maltipoo Companion</h1>
+                <p class="hero-subtitle reveal-item">Welcome to God's Home: Where healthy, happy puppies meet loving families.</p>
+                <a href="#puppies" class="btn btn-primary reveal-item">Meet Our Puppies</a>
+            </div>
+        </section>
+
+        <section id="about" class="page-section">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <h2>About God's Home</h2>
+                    <span class="accent-line"></span>
+                    <p class="section-subtitle">
+                        We are a licensed, family-run breeder dedicated to raising exceptional Maltipoo puppies in a loving home environment.
+                    </p>
+                </div>
+
+                <div class="content-card reveal-item">
+                    <h3>Our Breeding Philosophy</h3>
+                    <p>At God's Home, we are more than just breeders; we are a family committed to the highest standards of care. Our priority is ensuring each puppy is healthy, well-socialized, and ready to become a cherished member of your family.</p>
+                    
+                    <ul class="checklist">
+                        <li><i class="fas fa-check-circle"></i> Licensed & Ethical Breeding</li>
+                        <li><i class="fas fa-check-circle"></i> Health-Tested Parents</li>
+                        <li><i class="fas fa-check-circle"></i> Early Socialization</li>
+                        <li><i class="fas fa-check-circle"></i> Lifetime Breeder Support</li>
+                    </ul>
+                </div>
+
+                <div class="content-card reveal-item">
+                    <h3>The Maltipoo Breed</h3>
+                    <p>The Maltipoo is a popular crossbreed between the Maltese and the Toy or Miniature Poodle. Known for their affectionate, fun-loving nature, they make wonderful family companions. They are intelligent, easy to train, and have a low-shedding, hypoallergenic coat, making them a great choice for people with allergies.</p>
+                    <ul class="checklist">
+                        <li><i class="fas fa-ruler-combined"></i> <strong>Size:</strong> Typically 5-20 lbs</li>
+                        <li><i class="fas fa-heartbeat"></i> <strong>Lifespan:</strong> 10-15 years</li>
+                        <li><i class="fas fa-user-friends"></i> <strong>Temperament:</strong> Gentle, playful, intelligent</li>
+                        <li><i class="fas fa-brush"></i> <strong>Grooming:</strong> Regular brushing & professional grooming</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="page-section">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <h2>Our Adoption Process</h2>
+                    <span class="accent-line"></span>
+                    <p class="section-subtitle">
+                        We've streamlined our process to be simple, transparent, and focused on the well-being of our puppies.
+                    </p>
+                </div>
+
+                <div class="card-grid staggered-grid">
+                    <div class="content-card service-card reveal-item">
+                        <div class="service-icon-wrapper reveal-item scale-in">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>1. Inquiry & Application</h3>
+                        <p>Start by reaching out to us with any questions. We'll guide you through our application to ensure our puppies go to the best homes. A deposit will reserve your chosen companion.</p>
+                    </div>
+                    
+                    <div class="content-card service-card reveal-item">
+                        <div class="service-icon-wrapper reveal-item scale-in">
+                            <i class="fas fa-camera-retro"></i>
+                        </div>
+                        <h3>2. Weekly Updates</h3>
+                        <p>Once you've reserved your puppy, you'll receive weekly photos and videos. Watch your new family member grow and develop their personality from afar.</p>
+                    </div>
+
+                    <div class="content-card service-card reveal-item">
+                        <div class="service-icon-wrapper reveal-item scale-in">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <h3>3. Gotcha Day!</h3>
+                        <p>When your puppy is ready (around 8-10 weeks), we'll arrange for their safe journey to you, complete with a health certificate, vet records, and a starter pack.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="puppies" class="page-section">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <h2>Meet Our Puppies</h2>
+                    <span class="accent-line"></span>
+                    <p class="section-subtitle">
+                        See our available puppies below. For the most up-to-date info, please visit our Facebook page!
+                    </p>
+                </div>
+
+                <div class="card-grid staggered-grid">
+                    <div class="content-card puppy-card reveal-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYAB0oQ2WDViFnkCl_ni1bCXYgWDMAkzoCe0mqsjpXow&s=10" alt="Sparky the Maltipoo puppy" class="puppy-image">
+                        <div class="puppy-card-content">
+                            <h3>Sparky</h3>
+                            <p class="puppy-details">Male • 8 Weeks • Apricot</p>
+                            <p>Sparky is a bundle of joy! He loves to play and cuddle. He is great with kids and other pets.</p>
+                            <a href="https://www.facebook.com/profile.php?id=100077743310647" target="_blank" class="btn btn-secondary">See on Facebook</a>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card puppy-card reveal-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSve6URUr9R5t-MRiX-MRbCgTRJ16y8mYwEpptzmiqaHw&s=10" alt="Bella the Maltipoo puppy" class="puppy-image">
+                        <div class="puppy-card-content">
+                            <h3>Bella</h3>
+                            <p class="puppy-details">Female • 9 Weeks • Cream</p>
+                            <p>Bella is a sweet, gentle soul. She is very intelligent and is already learning basic commands.</p>
+                            <a href="https://www.facebook.com/profile.php?id=100077743310647" target="_blank" class="btn btn-secondary">See on Facebook</a>
+                        </div>
+                    </div>
+
+                     <div class="content-card puppy-card reveal-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7B6E7jNMxhhYcFExSI75qWLUy_LfrKnmoHenEEL2ZzizZY3Jqj_ngkljn&s=10" alt="Coco the Maltipoo puppy" class="puppy-image">
+                        <div class="puppy-card-content">
+                            <h3>Coco</h3>
+                            <p class="puppy-details">Female • 8 Weeks • Chocolate</p>
+                            <p>Coco is a little explorer with a big heart. She's curious, brave, and loves a good nap on a warm lap.</p>
+                            <a href="https://www.facebook.com/profile.php?id=100077743310647" target="_blank" class="btn btn-secondary">See on Facebook</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="stats" class="page-section">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <h2>Trusted, Licensed & Loved</h2>
+                    <span class="accent-line"></span>
+                    <p class="section-subtitle">
+                        Our numbers speak for themselves. We are proud of our commitment to healthy puppies and happy families. We are a fully licensed breeder, ensuring we meet the highest standards.
+                    </p>
+                </div>
+                <div class="card-grid staggered-grid">
+                    <div class="content-card stat-card reveal-item">
+                        <i class="fas fa-paw stat-icon"></i>
+                        <span class="stat-number" data-target="1337">0</span>
+                        <p class="stat-title">Puppies Delivered</p>
+                    </div>
+                    <div class="content-card stat-card reveal-item">
+                        <i class="fas fa-users stat-icon"></i>
+                        <span class="stat-number" data-target="1048">0</span>
+                        <p class="stat-title">Happy Clients</p>
+                    </div>
+                    <div class="content-card stat-card reveal-item">
+                        <i class="fas fa-dog stat-icon"></i>
+                        <span class="stat-number" data-target="7">0</span>
+                        <p class="stat-title">Puppies Available</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="page-section">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <h2>Frequently Asked Questions</h2>
+                    <span class="accent-line"></span>
+                    <p class="section-subtitle">
+                        Answers to common questions about our puppies and process.
+                    </p>
+                </div>
+
+                <div class="card-grid staggered-grid">
+                    <div class="content-card reveal-item">
+                        <h3>What comes with my puppy?</h3>
+                        <p>Each puppy comes with their first set of vaccinations, a deworming record, a thorough vet check-up, a health guarantee, a small bag of their current food, and a blanket with their mother's scent.</p>
+                    </div>
+                    <div class="content-card reveal-item">
+                        <h3>Do you require a deposit?</h3>
+                        <p>Yes, we require a non-refundable deposit to reserve a puppy. This deposit is applied toward the final price of your puppy. It ensures serious inquiries and secures your place in choosing a puppy.</p>
+                    </div>
+                    <div class="content-card reveal-item">
+                        <h3>How are the puppies socialized?</h3>
+                        <p>Our puppies are raised in our home as part of our family. They are handled daily and exposed to common household sounds, children, and other pets to ensure they are well-adjusted and confident.</p>
+                    </div>
+                     <div class="content-card reveal-item">
+                        <h3>What is the typical size of your Maltipoos?</h3>
+                        <p>Our Maltipoos typically range from 7 to 14 pounds as adults, depending on the parents. We can give you a more accurate estimate based on the specific litter you are interested in.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="page-section">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <h2>Stories From Our Families</h2>
+                    <span class="accent-line"></span>
+                    <p class="section-subtitle">
+                        We are proud of the homes our puppies have joined.
+                    </p>
+                </div>
+                <div class="card-grid staggered-grid">
+                    <div class="content-card testimonial-card reveal-item">
+                        <div class="testimonial-profile reveal-item scale-in">
+                            <img src="https://images.pexels.com/photos/14940523/pexels-photo-14940523.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Happy customer Sarah J." class="testimonial-avatar">
+                        </div>
+                        <blockquote>
+                            "We are so in love with our little Max! He's the healthiest, most playful puppy. The entire process with God's Home Maltipoo was smooth and professional. You can tell they really care."
+                        </blockquote>
+                        <cite>— Sarah J., Austin, TX</cite>
+                    </div>
+                    
+                    <div class="content-card testimonial-card reveal-item">
+                        <div class="testimonial-profile reveal-item scale-in">
+                            <img src="https://images.pexels.com/photos/14940523/pexels-photo-14940523.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Happy customer David L." class="testimonial-avatar">
+                        </div>
+                        <blockquote>
+                            "I was nervous about getting a puppy delivered, but they kept me updated with photos and videos the whole time. He arrived safely and is a perfect addition to our family. Highly recommended!"
+                        </blockquote>
+                        <cite>— David L., Miami, FL</cite>
+                    </div>
+
+                    <div class="content-card testimonial-card reveal-item">
+                        <div class="testimonial-profile reveal-item scale-in">
+                            <img src="https://images.pexels.com/photos/14940523/pexels-photo-14940523.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Happy customer Maria G." class="testimonial-avatar">
+                        </div>
+                        <blockquote>
+                            "From the first inquiry to the day we picked up Daisy, the communication was fantastic. She is a healthy, well-socialized puppy, and it's clear she came from a loving environment. Thank you, God's Home!"
+                        </blockquote>
+                        <cite>— Maria G., Denver, CO</cite>
+                    </div>
+                    
+                    <div class="content-card testimonial-card reveal-item">
+                        <div class="testimonial-profile reveal-item scale-in">
+                            <img src="https://images.pexels.com/photos/14940523/pexels-photo-14940523.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Happy customer The Chen Family" class="testimonial-avatar">
+                        </div>
+                        <blockquote>
+                            "We were looking for a reputable breeder and we found one in God's Home. They answered all our questions and provided lifetime support. Our puppy, Charlie, is the best. We couldn't be happier."
+                        </blockquote>
+                        <cite>— The Chen Family, San Francisco, CA</cite>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page-section">
+            <div class="container">
+                <div class="section-header reveal-item">
+                    <h2>Get in Touch</h2>
+                    <span class="accent-line"></span>
+                    <p class="section-subtitle">
+                        We're here to help and answer any question you might have. We look forward to hearing from you.
+                    </p>
+                </div>
+
+                <div class="contact-info-card reveal-item">
+                    <h3>Contact Information</h3>
+                    <p>Please reach out via Facebook or Phone. We primarily use Facebook for all communication and updates.</p>
+                    
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fab fa-facebook-f"></i>
+                            <a href="https://www.facebook.com/profile.php?id=100077743310647" target="_blank">Message Us on Facebook</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:17176786151">+1 (717) 678-6151</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Licensed Breeder in United States</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="content-card contact-form-card reveal-item">
+                    <h3>Send Us a Message</h3>
+                    <form action="mailto:godshomemaltipoo@usako.net" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-logo">God's Home Maltipoo</div>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#puppies">Puppies</a>
+                <a href="#faq">FAQ</a>
+                <a href="https://www.facebook.com/profile.php?id=100077743310647" target="_blank">Facebook</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; <span id="current-year"></span> God's Home Maltipoo Puppies. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
+        <script>                                // =======================
+//   MOBILE NAVIGATION
+// =======================
+
+// Wait for the DOM (all HTML) to be fully loaded before running the script
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Find the elements we need to work with
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    // 2. Check if both elements actually exist on the page
+    if (navToggle && navLinks) {
+        
+        // 3. Add a 'click' event listener to the toggle button
+        navToggle.addEventListener('click', () => {
+            
+            // Toggle the 'is-active' class on the button itself (for the hamburger 'X' animation)
+            navToggle.classList.toggle('is-active');
+            
+            // Toggle the 'nav-active' class on the nav links (to show/hide the menu)
+            navLinks.classList.toggle('nav-active');
+        });
+    }
+
+    // ======================================m
+    //   SMOOTH SCROLL & CLOSE MOBILE MENU
+    // ======================================
+    
+    // This part adds a nice extra feature:
+    // When a user clicks a nav link (e.g., "About") on mobile,
+    // the menu will automatically close, and it will scroll smoothly to that section.
+
+    // 1. Select all links inside the main navigation
+    const allNavLinks = document.querySelectorAll('.main-nav .nav-links a');
+
+    allNavLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            
+            // Check if the link is an internal hash link (like #about)
+            if (link.hash !== "") {
+                
+                // Only close the menu if it's actually open (in mobile view)
+                if (navLinks.classList.contains('nav-active')) {
+                    navToggle.classList.remove('is-active');
+                    navLinks.classList.remove('nav-active');
+                }
+                
+                // Note: The 'scroll-behavior: smooth;' in the CSS
+                // already handles the smooth scrolling part.
+            }
+        });
+    });
+
+    // =======================
+    //   STATS COUNTER ANIMATION
+    // =======================
+    const statsSection = document.getElementById('stats');
+    
+    if (statsSection) {
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200; // The lower the number, the faster the count
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+
+                    // Calculate the increment
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target;
+                    }d
+                };
+                updateCount();
+            });
+        };
+
+        // The Intersection Observer for stats section is slightly different
+        // as it only needs to trigger the counter, not add a class for CSS animation.
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // When the element is in view and has not been animated yet
+                if (entry.isIntersecting && !statsSection.classList.contains('animated')) {
+                    animateCounters();
+                    statsSection.classList.add('animated'); // Mark as animated to prevent re-triggering
+                    observer.unobserve(statsSection); // Stop observing after animation
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the section is visible
+        });
+
+        statsObserver.observe(statsSection);
+    }
+
+    // =======================
+    //   SCROLL REVEAL ANIMATIONS
+    // =======================
+    const revealItems = document.querySelectorAll('.reveal-item');
+    const staggeredGrids = document.querySelectorAll('.staggered-grid');
+
+    const observerOptions = {
+        root: null, // viewport
+        rootMargin: '0px',
+        threshold: 0.1 // Trigger when 10% of the item is visible
+    };
+
+    const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-animated');
+                observer.unobserve(entry.target); // Stop observing after animation
+            }
+        });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe individual reveal items
+    revealItems.forEach(element => {
+        // Special case: if a reveal-item is inside a staggered-grid, 
+        // it will be animated by the parent's observation. 
+        // So, only observe standalone reveal-items that are not children of staggered-grids.
+        if (!element.closest('.staggered-grid')) {
+            observer.observe(element);
+        }
+    });
+
+    // Observe staggered grid containers
+    staggeredGrids.forEach(container => {
+        observer.observe(container);
+    });
+
+});
+
+// =======================
+//   CURRENT YEAR (Already in HTML)
+// =======================
+// This is already handled by the small <script> tag in your HTML,
+// but if you wanted it in your main JS file, you would add:
+/*
+document.addEventListener('DOMContentLoaded', () => {
+    const currentYearSpan = document.getElementById('current-year');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
+});
+*/</script>
+      </body>
+      </html>
+    
