@@ -1075,7 +1075,7 @@ ul {
 
 </body>
 </html>
-        <script>                                // =======================
+        <script>                                    // =======================
 //   MOBILE NAVIGATION
 // =======================
 
@@ -1152,7 +1152,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         setTimeout(updateCount, 1);
                     } else {
                         counter.innerText = target;
-                    }d
+                    }
                 };
                 updateCount();
             });
@@ -1201,8 +1201,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Observe individual reveal items
     revealItems.forEach(element => {
-        // Special case: if a reveal-item is inside a staggered-grid, 
-        // it will be animated by the parent's observation. 
+        // Special case: if a reveal-item is inside a staggered-grid,
+        // it will be animated by the parent's observation.
         // So, only observe standalone reveal-items that are not children of staggered-grids.
         if (!element.closest('.staggered-grid')) {
             observer.observe(element);
